@@ -18,6 +18,11 @@ app.use(bodyParser.json());
 var storage = multer.memoryStorage();
 var upload = multer({ storage: storage });
 app.use(cors());
+app.use(function (req, res, next) { 
+         res.header("Access-Control-Allow-Origin", "*"); 
+         res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept"); 
+         next(); 
+ })
 const PORT = 3004;
 
 if (process.env.ENVIRONMENT === "lambda") {
