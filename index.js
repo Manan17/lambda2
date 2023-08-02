@@ -139,7 +139,7 @@ const deleteS3Images = async function (req, res) {
   for (let i = 0; i < ids.length; i++) {
     filename = ids[i];
     const params = {
-      Bucket: "imgress-1",
+      Bucket: process.env.S3_BUCKET,
       Key: `${dir}/${filename}`,
     };
     s3.deleteObject(params, (error, data) => {
@@ -208,5 +208,5 @@ app.post("/dev/upload", upload.any(), async (req, res) => {
 app.post("/dev/deletes3cont", async (req, res) => {
   let className = req.body.className;
   className += "/";
-  await deleteS3container("imgress-1", className).then(res.send("deleted !"));
+  await deleteS3container("imgress-2", className).then(res.send("deleted !"));
 });
